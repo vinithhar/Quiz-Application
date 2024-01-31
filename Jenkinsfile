@@ -137,6 +137,7 @@ def generateTaskDefinitionJson(taskDefinition, containerName, imageName) {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     }
+}
     """
     return taskDefinitionInputJson
 }
