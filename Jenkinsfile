@@ -49,7 +49,7 @@ pipeline  {
     steps {
         script {
             def commitId = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
-            def imageName = ""
+            def imageName = "vinith028/quiz-app:${commitId}"
             def taskDefinition = "quizapp-vinith"
             def cluster = "quizapp-vinith"
             def service = "quizz"
