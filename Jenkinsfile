@@ -2,7 +2,7 @@ def dockerUsername
 def dockerPassword
 
 pipeline  {
-  agent { label 'slave-agent' }
+  agent any
   
   triggers {
     githubPush()
