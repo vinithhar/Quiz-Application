@@ -9,8 +9,8 @@ pipeline  {
   }
   
   environment {
-        DOCKER_USERNAME = credentials('prudhvi-docker-username')
-        DOCKER_PASSWORD = credentials('prudhvi-docker-password')
+        DOCKER_USERNAME = credentials('vinith-docker-username')
+        DOCKER_PASSWORD = credentials('vinith-docker-password')
   }
   
   stages  {
@@ -25,7 +25,7 @@ pipeline  {
     stage('Checkout') {
             steps {
                 script {
-                    git branch: 'development', url: 'https://github.com/prudhvitejad/Quiz-Application.git'
+                    git branch: 'development', url: 'https://github.com/vinithhar/Quiz-Application.git'
                 }
             }
         }
@@ -34,8 +34,8 @@ pipeline  {
         script {
             def commitId = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
             
-            dockerUsername = getSecretText("prudhvi-docker-username")
-            dockerPassword = getSecretText("prudhvi-docker-password")
+            dockerUsername = getSecretText("vinith-docker-username")
+            dockerPassword = getSecretText("vinith-docker-password")
             sh "echo dockerUsername=${dockerUsername}"
             sh "echo dockerPassword=${dockerPassword}"
 
