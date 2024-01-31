@@ -92,52 +92,51 @@ def getSecretText(credentialsId) {
 
 def generateTaskDefinitionJson(taskDefinition, containerName, imageName) {
     def taskDefinitionInputJson = """
+{
+    "family": "${taskDefinition}",
+    "containerDefinitions": [
         {
-          "family": "${taskDefinition}",
-          "containerDefinitions": [
-            {
-              "name": "${containerName}",
-              "image": "${imageName}",
-              "cpu": 0,
-              "portMappings": [
+            "name": "${containerName}",
+            "image": "${imageName}",
+            "cpu": 0,
+            "portMappings": [
                 {
-                  "name": "${containerName}-81-tcp",
-                  "containerPort": 81,
-                  "hostPort": 81,
-                  "protocol": "tcp",
-                  "appProtocol": "http"
+                    "name": "${containerName}-80-tcp",
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
                 }
-              ],
-              "essential": true,
-              "environment": [],
-              "environmentFiles": [],
-              "mountPoints": [],
-              "volumesFrom": [],
-              "ulimits": [],
-              "logConfiguration": {
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                  "awslogs-create-group": "true",
-                  "awslogs-group": "/ecs/${taskDefinition}",
-                  "awslogs-region": "us-west-2",
-                  "awslogs-stream-prefix": "ecs"
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/${taskDefinition}",
+                    "awslogs-region": "us-west-2",
+                    "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
-              }
             }
-          ],
-          "executionRoleArn": "arn:aws:iam::022608205880:role/ecsTaskExecutionRole",
-          "networkMode": "awsvpc",
-          "requiresCompatibilities": [
-            "FARGATE"
-          ],
-          "cpu": "1024",
-          "memory": "3072",
-          "runtimePlatform": {
-            "cpuArchitecture": "X86_64",
-            "operatingSystemFamily": "LINUX"
-          }
         }
+    ],
+    "executionRoleArn": "arn:aws:iam::022608205880:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    }
     """
     return taskDefinitionInputJson
 }
