@@ -2,7 +2,7 @@ def dockerUsername
 def dockerPassword
 
 pipeline  {
-  agent any
+  agent {label 'slava-agent'}
   
   triggers {
     githubPush()
