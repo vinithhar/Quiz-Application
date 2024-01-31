@@ -49,11 +49,11 @@ pipeline  {
     steps {
         script {
             def commitId = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
-            def imageName = "prudhvitejad/quiz-app:${commitId}"
-            def taskDefinition = "Prudhvi-task-definition-family"
-            def cluster = "Prudhvi-task1"
-            def service = "Prudhvi-task1-service"
-            def containerName = "quiz-app"
+            def imageName = ""
+            def taskDefinition = "quizapp-vinith"
+            def cluster = "quizapp-vinith"
+            def service = "quizz"
+            def containerName = "vinith-quizzapp"
             
             // Pull the latest Docker image
             sh "docker login -u ${dockerUsername} -p ${dockerPassword}"
